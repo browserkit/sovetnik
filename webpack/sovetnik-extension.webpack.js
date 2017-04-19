@@ -8,6 +8,7 @@ let scopify = require('./../postcss/postcss-scopify');
 let autoprefixer = require('autoprefixer');
 let allImportant = require('./../postcss/postcss-all-important');
 let initial = require('postcss-initial');
+let getPathRegexp = require('./get-path-regexp');
 
 function getExtensionConfig(settings, type) {
     'use strict';
@@ -62,13 +63,13 @@ function getExtensionConfig(settings, type) {
                 {test: /\.json/, loader: 'json'},
                 {
                     test: /\.css$/,
-                    exclude: /split\-code\/src\/view\/components/,
+                    exclude: getPathRegexp('split-code', 'src', 'view', 'components'),
                     loader: 'style!css-loader'
                 },
                 {
                     test: /\.css$/,
-                    include: /split\-code\/src\/view\/components/,
-                    loader: 'style!css-loader!postcss-loader'
+                    include: getPathRegexp('split-code', 'src', 'view', 'components'),
+                    loader: 'css-loader!postcss-loader'
                 },
                 {test: /\.mustache/, loader: 'mustache'},
                 {test: /\.(png|svg)$/, loader: 'url'}
@@ -111,11 +112,11 @@ function getExtensionConfig(settings, type) {
     config.plugins.push(
         new PathChunkPlugin({
             name: 'sovetnik/sovetnik-vendor',
-            test(path) {
+            test(pathOfFile) {
                 const loaders = ['css-loader', 'style-loader'];
 
-                if (/node_modules[\/\\]/.test(path)) {
-                    return !loaders.some((name) => path.indexOf(`node_modules/${name}`) !== -1);
+                if (getPathRegexp('node_modules', path.sep).test(pathOfFile)) {
+                    return !loaders.some((name) => pathOfFile.indexOf(path.join('node_modules', name)) !== -1);
                 }
                 return false;
             }

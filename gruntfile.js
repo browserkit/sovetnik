@@ -7,8 +7,8 @@ module.exports = function (grunt) {
 
     const settings = {
         applicationName: "Яндекс.Советник",
-        affId: 1008,
-        clid: 2210590,
+        affId: grunt.option('affId') || 1008,
+        clid: grunt.option('clid') || 2210590,
         sovetnikExtension: true
     };
     const settingsDistribution = {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sovetnik Minifier",
   "author": "elergy",
-  "dependencies": {
+  "peerDependencies": {
     "autoprefixer": "6.3.6",
     "babel-core": "5.8.38",
     "babel-loader": "5.4.2",
@@ -12,7 +12,6 @@
     "file-loader": "0.8.5",
     "fs-extra": "0.30.0",
     "grunt": "0.4.5",
-    "grunt-contrib-uglify": "git://github.com/danillewin/grunt-contrib-uglify",
     "grunt-webpack": "1.0.14",
     "hogan.js": "3.0.2",
     "if-loader": "1.0.1",
@@ -20,17 +19,20 @@
     "mediator-js": "0.9.7",
     "mustache-loader": "0.3.1",
     "path-chunk-webpack-plugin": "1.2.0",
-    "perfect-scrollbar": "0.6.12",
     "postcss": "5.0.12",
     "postcss-initial": "1.5.2",
     "postcss-loader": "0.9.1",
     "promiscuous": "0.6.0",
     "stripcomment-loader": "0.1.0",
-    "style-loader": "git://github.com/Elergy/style-loader",
     "to-string-loader": "1.1.4",
     "url-loader": "0.5.7",
     "webpack": "1.13.1",
-    "wrapper-webpack-plugin": "0.1.7",
-    "odometer": "git://github.com/danillewin/odometer"
+    "wrapper-webpack-plugin": "0.1.7"
+  },
+  "dependencies": {
+    "odometer": "danillewin/odometer",
+    "style-loader": "Elergy/style-loader",
+    "perfect-scrollbar": "danillewin/perfect-scrollbar",
+    "grunt-contrib-uglify": "danillewin/grunt-contrib-uglify"
   }
 }
